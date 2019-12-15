@@ -14,7 +14,7 @@ https://github.com/GiacoboniNicholas/Adv_DUE_HX711_Matlab.
 
 ***IMPORTANT: if you are not familiar with custom Arduino Addons I suggest to download 
 my basic Addons for HX711 here:
-https://it.mathworks.com/matlabcentral/fileexchange/66641-custom-arduino-library-for-hx711
+https://it.mathworks.com/matlabcentral/fileexchange/66641-basic-custom-arduino-library-for-hx711
 which contains a more complete User's Manual. Once you get confident with the basic one 
 you can use this library which is more complete and offers several functionality such as 
 PowerUp and PowerDown function, a more stable serial comunication, an improved calibration
