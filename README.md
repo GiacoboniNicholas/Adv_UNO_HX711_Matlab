@@ -32,7 +32,8 @@ according to phisical connection.
 
 ## Limitations
 • This library has been tested with ARDUINO UNO and MEGA2560 under windows environment. 
-  It does not work with ARDUINO DUE and it might not work with other board.
+  It does not work with ARDUINO DUE and it might not work with other board. If you are
+  using Arduino DUE use this library ().
   
 • You can make static or dynamic measurements with high precision even with low cost 
   components, but in the second case do not exceed the sampling rate of 10 [Hz] because 
@@ -47,10 +48,12 @@ check the following recommendations.
   You can ﬁnd a very good one at https://github.com/bogde/HX711. 
   After the calibration phase take note of the scale factor so you can compare it 
   with the one you get from MATLAB.
+  
 • Make sure that the connection between ARDUINO and HX711 is correct and particularly 
   the connection between the load cell and HX711 must be stable and strong 
   (I personally recommend a soldered connection, it also reduces noise eﬀect if it’s 
   well executed, instead of other temporary connection).
+  
 • The correct functioning of the load cell depends on the installation of the strain 
   gauges, I warn you that on the market there are load cell with a low quality installation 
   technique and even a wrong bridge connection between strain gauges. If the calibration 
