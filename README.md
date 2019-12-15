@@ -15,7 +15,7 @@ my basic Addons for HX711 here:
 https://it.mathworks.com/matlabcentral/fileexchange/66641-custom-arduino-library-for-hx711
 which contains a more complete User's Manual. Once you get confident with the basic one 
 you can use this library which is more complete and offers several functionality such as 
-PowerUp and PowerDown function, a more stable serial comunication and so on...
+PowerUp and PowerDown function, a more stable serial comunication and so on...***
 
 ## Overview
 An add-on library is a collection of MATLAB and C++ code that provides a user
@@ -101,8 +101,105 @@ The default gain is 128, if you wish you can use 64 for channel A and 32 for cha
 ```c++  
 5 LoadCell = addon (a,’advancedHX711/advanced_HX711’,’Pins’,{’D2’,’D3’},’Gain’,64)
 ``` 
+The serial comunication protocol is time sensitive so if you need to use Interrupt set "true" 
+with an additional parameter: 
+```c++  
+5 LoadCell = addon (a,’advancedHX711/advanced_HX711’,’Pins’,{’D2’,’D3’},’Interrupt’,true)
+``` 
+Finally you can get data from HX711 with the following command:
+```c++  
+6 read_HX711(LoadCell)
+``` 
+Now you can write your own function to calibrate the loadcell or use the calibration class.
+
+### Troubleshooting
+If Custom Arduino Library class is not detected visit Custom Arduino Library Issues page: https://it.mathworks.com/help/supportpkg/arduinoio/ug/custom-arduino-library-issues.html.
+
+## Calibration Class
+The calibration class allows you to calibrate your loadcell with a few simple builtin command.
+
+•***1.*** Create the object of the calibration class:
+  ```c++  
+    cal = calibration(number_of_readings,known_weight); 
+  ```
+  The first parameter is the number of readings during calibration phase, in order to have a more
+  precise calibration every partial results is alwais an averege of "number_of_readings" values.
+  ***I suggest at least 100 readings.***
+  The second parameter is the weight of your sample which is necessary to determine the scale factor.
+  ***The unit of measure is nested in the scale factor, so if you set the known weight in [kg] then 
+  the result you'll get after calibration phase will also be in [kg]***.
   
+  ***Example (100 readings, weight 250 grams):***
+  ```c++
+    1 cal = calibration(100,250)
+  ``` 
   
+•***2.*** Call the tare function:
+  ```c++  
+    tare(name_calibration_object,name_HX711_object); 
+  ```
+  the first parameter is the name of calibration's object (in the point 1 I've chosen "cal"), the 
+  second parameter is the name of HX711's object (in the previous paragraph I've chosen "LoadCell").
   
+  ***Example:***
+  ```c++  
+    2 tare(cal,LoadCell); 
+  ```
+  
+•***3.*** Call the scale function:
+ ```c++  
+    scale(name_calibration_object,name_HX711_object); 
+  ```
+  ***Example:***
+  ```c++  
+    3 scale(cal,LoadCell); 
+  ```
+  
+•***4.*** The calibration phase is done. Now you can call the get_weight function:
+  ```c++  
+     get_weight(name_calibration_object,name_HX711_object); 
+  ```
+   ***Example:***
+  ```c++  
+    4 get_weight(cal,LoadCell);
+  ```   
+  
+•***OPT***. The number of readings and the known weight are public properties, so if you want to change them 
+  after the object is created you can do it in the following way:
+  ```c++  
+  5 cal.n = new_number_of_readings; 
+  6 cal.known_weight = new_known_weight;
+  ```
+  now you have to repeat steps 2 and 3.
+  
+ •***OPT.*** If you are interested in how your loadcell behaves with a speciﬁc static load in terms of precision 
+   and accuracy you can use the stat function in order to get the average and the standard deviation of 
+   multiple readings: 
+   ```c++  
+      stat(name_calibration_object,name_HX711_object,number_of_readings);
+   ```    
+   ***Example:***    
+   ```c++  
+     7 stat(cal,LoadCell,100);
+   ```   
+    
+•***OPT.*** Finally if you are interested in a visual representation of the stat function you can use the 
+  plot data function:
+  ```c++  
+     plot_data(name_calibration_object,name_HX711_object,number_of_readings,known_weight);
+  ```
+  ***Example:***
+  ```c++  
+      8 plot_data(cal,LoadCell,100,250);
+  ```   
+
+
+
+
+
+
+
+
+
   
   
