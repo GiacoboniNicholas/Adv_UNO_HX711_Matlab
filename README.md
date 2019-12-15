@@ -192,7 +192,13 @@ The calibration class allows you to calibrate your loadcell with a few simple bu
   ```c++  
       8 plot_data(cal,LoadCell,100,250);
   ```   
-
+***Important***: according to the Avia semiconductor's HX711 datasheet the output 24 bits of data is in 
+2’s complement format. When input differential signal goes out of the 24 bit range, the output data will 
+be saturated at 800000h (MIN) or 7FFFFFh (MAX), until the input signal comes back to the input range. 
+In order to garantee a more accurate calibration of your loadcell when the Calibration class starts 
+the serial comunication with HX711 it automatically checks the output, if the data is 800000h or 7FFFFFh the 
+Calibration class assigns NaN. During calibration phase NaN values are automatically discarded. If you are
+acquiring multiple readings with get_weight function it will be easier to filter the data. 
 
 
 
