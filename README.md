@@ -155,14 +155,22 @@ The calibration class allows you to calibrate your loadcell with a few simple bu
     3 scale(cal,LoadCell); 
   ```
   
-•***4.*** The calibration phase is done. Now you can call the get_weight function:
+•***4.*** The calibration phase is done. Now you can call the get_weight function which give you a single raw reading:
   ```c++  
      get_weight(name_calibration_object,name_HX711_object); 
   ```
    ***Example:***
   ```c++  
     4 get_weight(cal,LoadCell);
-  ```   
+  ```  
+  If you want an average value of multiple readings add an additional parameter: 
+  ```c++  
+     get_weight(name_calibration_object,name_HX711_object,number_of_readings); 
+  ```
+   ***Example:***
+  ```c++  
+    4 get_weight(cal,LoadCell,10);
+  ```  
   
 •***OPT***. The number of readings and the known weight are public properties, so if you want to change them 
   after the object is created you can do it in the following way:
