@@ -8,7 +8,8 @@ already installed the MATLAB Support Package for ARDUINO Hardware.
 It does require basic knowledge about MATLAB and his functionality, furthermore 
 it assumes your load cell works properly and the connection is
 correct. This particular library has been tested with Arduino UNO and
-MEGA2560, if you are using Arduino DUE you can use this one ().
+MEGA2560, if you are using Arduino DUE you can use this one:
+https://github.com/GiacoboniNicholas/Adv_DUE_HX711_Matlab.
 
 ***IMPORTANT: if you are not familiar with custom Arduino Addons I suggest to download 
 my basic Addons for HX711 here:
@@ -33,7 +34,7 @@ according to phisical connection.
 ## Limitations
 • This library has been tested with ARDUINO UNO and MEGA2560 under windows environment. 
   It does not work with ARDUINO DUE and it might not work with other board. If you are
-  using Arduino DUE use this library ().
+  using Arduino DUE use this library https://github.com/GiacoboniNicholas/Adv_DUE_HX711_Matlab
   
 • You can make static or dynamic measurements with high precision even with low cost 
   components, but in the second case do not exceed the sampling rate of 10 [Hz] because 
